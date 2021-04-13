@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".checkin.SelectRoomFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/select_room_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="25dp"
+            android:text="Select Room:-"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/select_room_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/select_room_txt"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp">
+
+            <RadioButton
+                android:id="@+id/room_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Room No: R203"
+                />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/equipment_check_list_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="25dp"
+            android:text="Equipment Check List:-"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_room_radio_group" />
+
+        <CheckBox
+            android:id="@+id/checkbox_air_con"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/equipment_check_list_txt"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/air_con_ctrl"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            />
+
+        <CheckBox
+            android:id="@+id/checkbox_tv_ctrl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_air_con"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/tv_ctrl"
+            android:layout_marginLeft="20dp"
+            />
+
+        <CheckBox
+            android:id="@+id/checkbox_hotel_handbook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_tv_ctrl"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/hotel_handbook"
+            android:layout_marginLeft="20dp"
+            />
+
+        <CheckBox
+            android:id="@+id/checkbox_room_access_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_hotel_handbook"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/room_access_card"
+            android:layout_marginLeft="20dp"
+            />
+
+        <Button
+            android:id="@+id/check_in_btn"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/button_green"
+            android:text="Check In"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkbox_room_access_card" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>
