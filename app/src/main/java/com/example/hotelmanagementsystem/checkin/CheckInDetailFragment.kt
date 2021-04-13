@@ -22,6 +22,7 @@ import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationV
 
 class CheckInDetailFragment : Fragment() {
 
+    // Test
     private val sharedViewModel: ReservationViewModel by activityViewModels()
     private val args by navArgs<CheckInDetailFragmentArgs>()
     private lateinit var reservationDatabaseViewModel: ReservationDatabaseViewModel
