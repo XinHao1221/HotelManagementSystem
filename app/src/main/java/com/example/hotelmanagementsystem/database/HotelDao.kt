@@ -30,8 +30,15 @@ interface  HotelDao{
     @Query("DELETE FROM reservation_table")
     suspend fun clear()
 
-    @Query("SELECT * FROM reservation_table WHERE check_in_date = :checkInDate")
+    @Query("SELECT * FROM reservation_table WHERE check_in_date = :checkInDate AND status = 'pending'")
     fun getTodaysChecKIn(checkInDate: String): LiveData<List<Reservation>>
+
+    @Query("SELECT * FROM reservation_table WHERE check_out_date = :checkOutDate AND status = 'checkIn'")
+    fun getTodaysCheckKOut(checkOutDate: String): LiveData<List<Reservation>>
+
+    @Query("SELECT * FROM reservation_table WHERE status = 'checkOut'")
+    fun getAllCheckKOut(): LiveData<List<Reservation>>
+
 //    @Query("SELECT * FROM reservation_table WHERE guest_name LIKE :searchQuery")
 //    fun searchReservation(searchQuery: String): Flow<List<Reservation>>
 

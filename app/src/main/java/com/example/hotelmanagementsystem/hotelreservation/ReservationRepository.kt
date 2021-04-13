@@ -11,6 +11,8 @@ class ReservationRepository(private val hotelDao: HotelDao) {
 
     val readAllData: LiveData<List<Reservation>> = hotelDao.getAllReservation()
     val todaysCheckIn: LiveData<List<Reservation>> = hotelDao.getTodaysChecKIn(getTodaysDate())
+    val todaysCheckOut: LiveData<List<Reservation>> = hotelDao.getTodaysCheckKOut(getTodaysDate())
+    val allCheckOut : LiveData<List<Reservation>> = hotelDao.getAllCheckKOut()
 
     suspend fun addReservation(reservation: Reservation){
         hotelDao.insertReservation(reservation)
@@ -29,6 +31,14 @@ class ReservationRepository(private val hotelDao: HotelDao) {
     }
 
     suspend fun getAllTodaysReservation(checkInDate : String){
+
+    }
+
+    suspend fun getAllTodaysCheckOut(checkInDate : String){
+
+    }
+
+    suspend fun getAllCheckOut(){
 
     }
 

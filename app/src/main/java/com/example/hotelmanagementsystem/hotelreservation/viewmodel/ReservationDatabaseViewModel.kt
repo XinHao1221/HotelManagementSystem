@@ -18,6 +18,8 @@ class ReservationDatabaseViewModel(application: Application): AndroidViewModel(a
 
     val readAllData: LiveData<List<Reservation>>
     val todaysCheckIn: LiveData<List<Reservation>>
+    val todaysCheckOut: LiveData<List<Reservation>>
+    val allCheckOut: LiveData<List<Reservation>>
 
     private val repository: ReservationRepository
 
@@ -27,6 +29,8 @@ class ReservationDatabaseViewModel(application: Application): AndroidViewModel(a
         repository = ReservationRepository(hotelDao)
         readAllData = repository.readAllData
         todaysCheckIn = repository.todaysCheckIn
+        todaysCheckOut = repository.todaysCheckOut
+        allCheckOut = repository.allCheckOut
     }
 
 
@@ -65,6 +69,14 @@ class ReservationDatabaseViewModel(application: Application): AndroidViewModel(a
 
         viewModelScope.launch(Dispatchers.IO) {
             repository.getAllTodaysReservation(checkInDate)
+        }
+
+    }
+
+    fun getTodaysCheckOut(checkOutDate : String){
+
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getAllTodaysCheckOut(checkOutDate)
         }
 
     }
