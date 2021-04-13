@@ -110,6 +110,9 @@
         <action
             android:id="@+id/action_checkOutMenuFragment_to_checkOutDetailFragment"
             app:destination="@id/checkOutDetailFragment" />
+        <action
+            android:id="@+id/action_checkOutMenuFragment_to_checkedOutDetailFragment"
+            app:destination="@id/checkedOutDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/selectRoomFragment"
@@ -142,5 +145,18 @@
             android:id="@+id/action_equipmentCheckListFragment_to_checkOutMenuFragment"
             app:destination="@id/checkOutMenuFragment"
             app:popUpTo="@id/checkOutMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkedOutDetailFragment"
+        android:name="com.example.hotelmanagementsystem.checkout.CheckedOutDetailFragment"
+        android:label="fragment_checked_out_detail"
+        tools:layout="@layout/fragment_checked_out_detail" >
+        <action
+            android:id="@+id/action_checkedOutDetailFragment_to_checkOutMenuFragment"
+            app:destination="@id/checkOutMenuFragment"
+            app:popUpTo="@id/checkOutMenuFragment" />
+        <argument
+            android:name="currentCheckedOut"
+            app:argType="com.example.hotelmanagementsystem.database.Reservation" />
     </fragment>
 </navigation>

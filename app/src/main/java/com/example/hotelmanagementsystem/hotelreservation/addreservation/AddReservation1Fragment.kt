@@ -49,38 +49,36 @@ class AddReservation1Fragment : Fragment() {
             binding.txtEmail.setText(sharedViewModel.email)
             binding.txtPhoneNo.setText(sharedViewModel.phoneNo)
 
-            //binding.spinnerIdType.setSelection(sharedViewModel.selectedPosition)
+            // Set user selected spinner option
+            // ID type
+            if(sharedViewModel.idType == "My Card"){
+                binding.spinnerIdType.setSelection(0)
+            }else if(sharedViewModel.idType == "Passport"){
+                binding.spinnerIdType.setSelection(1)
+            }
 
-//            var spr:Spinner = binding.spinnerIdType
-//
-//            //var test:String = binding.spinnerIdType.toString()
-//
-//            if(sharedViewModel.idType.toString() != ""){
-//                //binding.txtEmail.setText("Test")
-//                for(i in 0..spr.count){
-//
-//                    if(spr.getItemAtPosition(i).equals(sharedViewModel.idType))
-//                    {
-//                        spr.setSelection(i)
-//                    }
-//                }
-//            }
+            // Room Type
+            if(sharedViewModel.roomType == "Single Room"){
+                binding.spinnerRoomType.setSelection(0)
+            }else if(sharedViewModel.roomType == "Double Room"){
+                binding.spinnerRoomType.setSelection(1)
+            }else if(sharedViewModel.roomType == "King Size Room"){
+                binding.spinnerRoomType.setSelection(2)
+            }else if(sharedViewModel.roomType == "Standard Room"){
+                binding.spinnerRoomType.setSelection(3)
+            }else if(sharedViewModel.roomType == "Triple Room"){
+                binding.spinnerRoomType.setSelection(4)
+            }else if(sharedViewModel.roomType == "Quad Room"){
+                binding.spinnerRoomType.setSelection(5)
+            }else if(sharedViewModel.roomType == "Deluxe Room"){
+                binding.spinnerRoomType.setSelection(6)
+            }
 
-
-            //.spinnerIdType.setSelection(2)
         }
 
         binding.reservationNextButton.setOnClickListener{
             nextButtonOnclick(it, binding)
         }
-
-
-
-//        binding.reservationNextButton.setOnClickListener {
-//            Navigation.findNavController(it).navigate(R.id.action_addReservation1Fragment_to_reservationSummaryFragment)
-//        }
-
-
 
         return binding.root
     }

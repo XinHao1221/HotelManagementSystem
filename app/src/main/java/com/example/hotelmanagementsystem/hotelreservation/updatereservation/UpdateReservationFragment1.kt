@@ -50,6 +50,31 @@ class UpdateReservationFragment1 : Fragment() {
         binding.checkOutDate.text = sharedViewModel.checkOutDate
         binding.txtEmail.setText(sharedViewModel.email)
         binding.txtPhoneNo.setText(sharedViewModel.phoneNo)
+
+        // Set user selected spinner option
+        // ID type
+        if(sharedViewModel.idType == "My Card"){
+            binding.spinnerIdType.setSelection(0)
+        }else if(sharedViewModel.idType == "Passport"){
+            binding.spinnerIdType.setSelection(1)
+        }
+
+        // Room Type
+        if(sharedViewModel.roomType == "Single Room"){
+            binding.spinnerRoomType.setSelection(0)
+        }else if(sharedViewModel.roomType == "Double Room"){
+            binding.spinnerRoomType.setSelection(1)
+        }else if(sharedViewModel.roomType == "King Size Room"){
+            binding.spinnerRoomType.setSelection(2)
+        }else if(sharedViewModel.roomType == "Standard Room"){
+            binding.spinnerRoomType.setSelection(3)
+        }else if(sharedViewModel.roomType == "Triple Room"){
+            binding.spinnerRoomType.setSelection(4)
+        }else if(sharedViewModel.roomType == "Quad Room"){
+            binding.spinnerRoomType.setSelection(5)
+        }else if(sharedViewModel.roomType == "Deluxe Room"){
+            binding.spinnerRoomType.setSelection(6)
+        }
     }
 
     fun nextButtonOnclick(view : View, binding : FragmentUpdateReservation1Binding){
@@ -125,8 +150,6 @@ class UpdateReservationFragment1 : Fragment() {
         }else{
 
         }
-
-
 
         // If user have entered all the required page, navigate to next page
         if(condition == 1)

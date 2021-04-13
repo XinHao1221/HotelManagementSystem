@@ -44,10 +44,13 @@
     </string-array>
 
     <string-array name="spinnerItem_Room_Type">
-        <item>Small Room</item>
-        <item>Medium Room</item>
-        <item>item3</item>
-        <item>item4</item>
+        <item>Single Room</item>
+        <item>Double Room</item>
+        <item>King Size Room</item>
+        <item>Standard Room</item>
+        <item>Triple Room</item>
+        <item>Quad Room</item>
+        <item>Deluxe Room</item>
     </string-array>
 
     <string-array name="spinnerItem_payment_method">

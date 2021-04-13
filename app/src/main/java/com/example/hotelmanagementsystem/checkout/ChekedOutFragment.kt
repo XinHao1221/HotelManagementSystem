@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelmanagementsystem.R
 import com.example.hotelmanagementsystem.checkout.recycleview.CheckOutAdapter
+import com.example.hotelmanagementsystem.checkout.recycleview.TotalCheckOutAdapter
 import com.example.hotelmanagementsystem.databinding.FragmentCheckOutTodayBinding
 import com.example.hotelmanagementsystem.databinding.FragmentGuestsInHouseBinding
 import com.example.hotelmanagementsystem.databinding.FragmentGuestsInHouseBindingImpl
@@ -30,7 +31,7 @@ class ChekedOutFragment : Fragment() {
             R.layout.fragment_guests_in_house,container,false)
 
         // Recycle view
-        val adapter = CheckOutAdapter()
+        val adapter = TotalCheckOutAdapter()
         val recyclerView = binding.guestsInHouseRecyclerview
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
