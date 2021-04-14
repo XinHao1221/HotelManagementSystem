@@ -46,7 +46,7 @@ class ReservationMenuFragment : Fragment() {
 
         // ReservationViewModel
         reservationDatabaseViewModel = ViewModelProvider(this).get(ReservationDatabaseViewModel::class.java)
-        reservationDatabaseViewModel.readAllData.observe(viewLifecycleOwner, Observer { reservataion ->
+        reservationDatabaseViewModel.allPendingReservation.observe(viewLifecycleOwner, Observer { reservataion ->
             adapter.setData(reservataion)
 
         })

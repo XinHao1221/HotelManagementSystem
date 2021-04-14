@@ -38,7 +38,7 @@ class CheckOutTodayFragment : Fragment() {
 
         // ReservationViewModel
         reservationDatabaseViewModel = ViewModelProvider(this).get(ReservationDatabaseViewModel::class.java)
-        reservationDatabaseViewModel.todaysCheckIn.observe(viewLifecycleOwner, Observer { reservation ->
+        reservationDatabaseViewModel.todaysCheckOut.observe(viewLifecycleOwner, Observer { reservation ->
             adapter.setData(reservation)
         })
 

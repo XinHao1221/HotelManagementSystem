@@ -14,13 +14,20 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.hotelmanagementsystem.R
 import com.example.hotelmanagementsystem.databinding.FragmentCheckOutTodayBinding
 import com.example.hotelmanagementsystem.databinding.FragmentSelectRoomBinding
+import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationDatabaseViewModel
+import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationViewModel
 
 
 class SelectRoomFragment : Fragment() {
+
+    private val sharedViewModel: ReservationViewModel by activityViewModels()
+    private lateinit var reservationDatabaseViewModel: ReservationDatabaseViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,9 +38,10 @@ class SelectRoomFragment : Fragment() {
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Check In"
 
+        reservationDatabaseViewModel = ViewModelProvider(this).get(ReservationDatabaseViewModel::class.java)
+
         binding.checkInBtn.setOnClickListener{
             checkIsEquipmentCheckListChecked(binding)
-
         }
 
         return binding.root
@@ -77,6 +85,12 @@ class SelectRoomFragment : Fragment() {
             builder.show()
 
         }else{
+
+            var reservationID:Int = sharedViewModel.reservationID.toInt()
+
+            // Update reservation status to checkIn
+            reservationDatabaseViewModel.updateReservationStatus("checkIn", reservationID)
+
             findNavController().navigate(R.id.action_selectRoomFragment_to_checkInMenuFragment)
         }
     }

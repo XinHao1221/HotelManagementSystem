@@ -31,6 +31,8 @@ class CheckInMenuFragment : Fragment() {
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Check In"
 
+        reservationDatabaseViewModel = ViewModelProvider(this).get(ReservationDatabaseViewModel::class.java)
+
         // Reset the sharedViewModel to empty
         clearSharedViewModel()
 

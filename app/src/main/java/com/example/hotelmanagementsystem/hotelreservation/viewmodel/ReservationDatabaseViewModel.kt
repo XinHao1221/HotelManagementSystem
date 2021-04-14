@@ -20,6 +20,7 @@ class ReservationDatabaseViewModel(application: Application): AndroidViewModel(a
     val todaysCheckIn: LiveData<List<Reservation>>
     val todaysCheckOut: LiveData<List<Reservation>>
     val allCheckOut: LiveData<List<Reservation>>
+    val allPendingReservation: LiveData<List<Reservation>>
 
     private val repository: ReservationRepository
 
@@ -31,6 +32,7 @@ class ReservationDatabaseViewModel(application: Application): AndroidViewModel(a
         todaysCheckIn = repository.todaysCheckIn
         todaysCheckOut = repository.todaysCheckOut
         allCheckOut = repository.allCheckOut
+        allPendingReservation = repository.pendingReservation
     }
 
 
@@ -79,6 +81,13 @@ class ReservationDatabaseViewModel(application: Application): AndroidViewModel(a
             repository.getAllTodaysCheckOut(checkOutDate)
         }
 
+    }
+
+    fun updateReservationStatus(status: String, reservationID:Int){
+
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateReservationStatus(status, reservationID)
+        }
     }
 
 //    fun searchDatabase(searchQuery: String): LiveData<List<Reservation>>{

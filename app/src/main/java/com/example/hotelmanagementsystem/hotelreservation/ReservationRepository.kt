@@ -13,9 +13,18 @@ class ReservationRepository(private val hotelDao: HotelDao) {
     val todaysCheckIn: LiveData<List<Reservation>> = hotelDao.getTodaysChecKIn(getTodaysDate())
     val todaysCheckOut: LiveData<List<Reservation>> = hotelDao.getTodaysCheckKOut(getTodaysDate())
     val allCheckOut : LiveData<List<Reservation>> = hotelDao.getAllCheckKOut()
+    val pendingReservation : LiveData<List<Reservation>> = hotelDao.getPendingReservation()
 
     suspend fun addReservation(reservation: Reservation){
         hotelDao.insertReservation(reservation)
+    }
+
+    suspend fun updateReservationStatus(status: String, reservationID: Int){
+        hotelDao.updateReservationStatus(status, reservationID)
+    }
+
+    suspend fun getPendingReservation(){
+
     }
 
     suspend fun updateReservation(reservation: Reservation){
@@ -41,6 +50,8 @@ class ReservationRepository(private val hotelDao: HotelDao) {
     suspend fun getAllCheckOut(){
 
     }
+
+
 
 
     // Get todaysdate
