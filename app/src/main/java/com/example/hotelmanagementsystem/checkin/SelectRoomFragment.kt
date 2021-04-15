@@ -88,12 +88,32 @@ class SelectRoomFragment : Fragment() {
 
             var reservationID:Int = sharedViewModel.reservationID.toInt()
 
-            // Update reservation status to checkIn
-            reservationDatabaseViewModel.updateReservationStatus("checkIn", reservationID)
+            val builder = android.app.AlertDialog.Builder(requireContext())
+
+            builder.setNegativeButton("No"){_, _ ->
+
+            }
+
+            // Confirm delete
+            builder.setPositiveButton("Yes"){_, _->
+                // Update reservation status to checkIn
+                reservationDatabaseViewModel.updateReservationStatus("checkIn", reservationID)
+
+                Toast.makeText(requireContext(), "Check In Successful", Toast.LENGTH_SHORT).show()
+
+                findNavController().navigate(R.id.action_selectRoomFragment_to_checkInMenuFragment)
+            }
+
+            builder.setTitle("Check In?");
+
+            builder.setMessage("Confirm check in " + sharedViewModel.guestName.toString() + "?")
+            builder.create().show()
 
 
 
-            findNavController().navigate(R.id.action_selectRoomFragment_to_checkInMenuFragment)
+
+
+
         }
     }
 
