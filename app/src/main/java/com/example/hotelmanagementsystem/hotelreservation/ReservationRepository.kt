@@ -2,6 +2,7 @@ package com.example.hotelmanagementsystem.hotelreservation
 
 import androidx.compose.runtime.referentialEqualityPolicy
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.asFlow
 import com.example.hotelmanagementsystem.database.HotelDao
 import com.example.hotelmanagementsystem.database.Reservation
 import java.time.LocalDate
@@ -51,8 +52,15 @@ class ReservationRepository(private val hotelDao: HotelDao) {
 
     }
 
+    fun searchReservation(guestName:String, status: String):LiveData<List<Reservation>>{
+
+        return hotelDao.searchReservation(guestName, status)
+    }
 
 
+    fun getAll():LiveData<List<Reservation>>{
+        return hotelDao.getAllReservation()
+    }
 
     // Get todaysdate
     // Use to get todays check im and check out
@@ -65,6 +73,8 @@ class ReservationRepository(private val hotelDao: HotelDao) {
 
         return dateFormatted
     }
+
+
 
 //    fun searchReservation(searchQuery: String): List<Reservation>{
 //

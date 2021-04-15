@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/search_reservation"
+            android:id="@+id/search_check_in"
             android:layout_width="307dp"
             android:layout_height="41dp"
             android:layout_marginStart="40dp"
@@ -33,19 +33,19 @@
             android:text="Guests Check In:-"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_reservation" />
+            app:layout_constraintTop_toBottomOf="@+id/search_check_in" />
 
 
         <ImageView
-            android:id="@+id/imageButton"
+            android:id="@+id/check_in_search_button"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="10dp"
             android:src="@drawable/loupe"
             app:layout_constraintBottom_toBottomOf="@+id/search_reservation"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/search_reservation"
-            app:layout_constraintTop_toTopOf="@+id/search_reservation" />
+            app:layout_constraintStart_toEndOf="@+id/search_check_in"
+            app:layout_constraintTop_toTopOf="@+id/search_check_in" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/check_in_recyclerview"

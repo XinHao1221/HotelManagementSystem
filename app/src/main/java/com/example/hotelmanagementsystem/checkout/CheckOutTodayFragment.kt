@@ -16,6 +16,7 @@ import com.example.hotelmanagementsystem.checkout.recycleview.CheckOutAdapter
 import com.example.hotelmanagementsystem.databinding.FragmentCheckOutMenuBinding
 import com.example.hotelmanagementsystem.databinding.FragmentCheckOutTodayBinding
 import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationDatabaseViewModel
+import kotlinx.android.synthetic.main.fragment_check_in_menu.view.*
 
 
 class CheckOutTodayFragment : Fragment() {
@@ -41,6 +42,23 @@ class CheckOutTodayFragment : Fragment() {
         reservationDatabaseViewModel.todaysCheckOut.observe(viewLifecycleOwner, Observer { reservation ->
             adapter.setData(reservation)
         })
+
+        binding.checkOutTodayImageButton.setOnClickListener{
+
+            var searchItem:String = binding.searchCheckOutToday.text.toString()
+
+            if(searchItem != ""){
+                searchItem = searchItem.toUpperCase()
+
+                reservationDatabaseViewModel.searchReservation("%" + searchItem + "%", "checkIn").observe(viewLifecycleOwner, Observer { reservataion ->
+                    adapter.setData(reservataion)
+                })
+            }else{
+                reservationDatabaseViewModel.todaysCheckOut.observe(viewLifecycleOwner, Observer { reservation ->
+                    adapter.setData(reservation)
+                })
+            }
+        }
 
         return binding.root
     }

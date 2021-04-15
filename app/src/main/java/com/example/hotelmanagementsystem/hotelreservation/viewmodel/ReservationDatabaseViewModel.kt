@@ -1,10 +1,7 @@
 package com.example.hotelmanagementsystem.hotelreservation.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.hotelmanagementsystem.database.HotelDatabase
 import com.example.hotelmanagementsystem.database.Reservation
@@ -50,6 +47,11 @@ class ReservationDatabaseViewModel(application: Application): AndroidViewModel(a
             repository.updateReservation(reservation)
         }
     }
+
+    fun searchReservation(guestName: String, status: String):LiveData<List<Reservation>>{
+        return repository.searchReservation(guestName, status)
+    }
+
 
     fun deleteReservation(reservation: Reservation){
 

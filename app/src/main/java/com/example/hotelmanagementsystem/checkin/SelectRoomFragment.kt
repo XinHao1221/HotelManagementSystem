@@ -91,6 +91,8 @@ class SelectRoomFragment : Fragment() {
             // Update reservation status to checkIn
             reservationDatabaseViewModel.updateReservationStatus("checkIn", reservationID)
 
+
+
             findNavController().navigate(R.id.action_selectRoomFragment_to_checkInMenuFragment)
         }
     }

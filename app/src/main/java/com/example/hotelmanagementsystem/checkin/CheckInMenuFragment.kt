@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelmanagementsystem.R
 import com.example.hotelmanagementsystem.checkin.recycleview.CheckInAdapter
+import com.example.hotelmanagementsystem.databinding.FragmentCheckInMenuBinding
+import com.example.hotelmanagementsystem.databinding.FragmentGuestsInHouseBinding
 import com.example.hotelmanagementsystem.hotelreservation.ReservationAdapter
 import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationDatabaseViewModel
 import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationViewModel
@@ -27,7 +30,8 @@ class CheckInMenuFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_check_in_menu, container, false)
+        val binding = DataBindingUtil.inflate<FragmentCheckInMenuBinding>(inflater,
+                R.layout.fragment_check_in_menu,container,false)
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Check In"
 
@@ -38,7 +42,7 @@ class CheckInMenuFragment : Fragment() {
 
         // Recycle view
         val adapter = CheckInAdapter()
-        val recyclerView = view.check_in_recyclerview
+        val recyclerView = binding.checkInRecyclerview
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -48,9 +52,24 @@ class CheckInMenuFragment : Fragment() {
             adapter.setData(reservation)
         })
 
+        binding.checkInSearchButton.setOnClickListener{
 
+            var searchItem:String = binding.searchCheckIn.text.toString()
 
-        return view
+            if(searchItem != ""){
+                searchItem = searchItem.toUpperCase()
+
+                reservationDatabaseViewModel.searchReservation("%" + searchItem + "%", "pending").observe(viewLifecycleOwner, Observer { reservataion ->
+                    adapter.setData(reservataion)
+                })
+            }else{
+                reservationDatabaseViewModel.todaysCheckIn.observe(viewLifecycleOwner, Observer { reservation ->
+                    adapter.setData(reservation)
+                })
+            }
+        }
+
+        return binding.root
     }
 
     fun clearSharedViewModel(){

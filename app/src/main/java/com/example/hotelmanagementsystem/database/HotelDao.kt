@@ -45,8 +45,7 @@ interface  HotelDao{
     @Query("UPDATE reservation_table SET status = :status WHERE reservationId = :reservationID")
     fun updateReservationStatus(status: String, reservationID : Int)
 
-//    @Query("SELECT * FROM reservation_table WHERE guest_name LIKE :searchQuery")
-//    fun searchReservation(searchQuery: String): Flow<List<Reservation>>
-
+    @Query("SELECT * FROM reservation_table WHERE UPPER(guest_name) LIKE :searchQuery AND status = :status")
+    fun searchReservation(searchQuery: String, status: String): LiveData<List<Reservation>>
 
 }

@@ -9,13 +9,20 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.hotelmanagementsystem.R
 import com.example.hotelmanagementsystem.databinding.FragmentEquipmentCheckListBinding
 import com.example.hotelmanagementsystem.databinding.FragmentSelectRoomBinding
+import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationDatabaseViewModel
+import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationViewModel
 
 
 class EquipmentCheckListFragment : Fragment() {
+
+    private val sharedViewModel: ReservationViewModel by activityViewModels()
+    private lateinit var reservationDatabaseViewModel: ReservationDatabaseViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -25,6 +32,9 @@ class EquipmentCheckListFragment : Fragment() {
             R.layout.fragment_equipment_check_list,container,false)
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Check Out"
+
+        // ReservationViewModel
+        reservationDatabaseViewModel = ViewModelProvider(this).get(ReservationDatabaseViewModel::class.java)
 
         binding.checkOutBtn.setOnClickListener{
             checkIsEquipmentCheckListChecked(binding)
@@ -71,6 +81,12 @@ class EquipmentCheckListFragment : Fragment() {
             builder.show()
 
         }else{
+
+            var reservationID:Int = sharedViewModel.reservationID.toInt()
+
+            // Update reservation status to checkIn
+            reservationDatabaseViewModel.updateReservationStatus("checkOut", reservationID)
+
             findNavController().navigate(R.id.action_equipmentCheckListFragment_to_checkOutMenuFragment)
         }
     }

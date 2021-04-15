@@ -38,9 +38,26 @@ class ChekedOutFragment : Fragment() {
 
         // ReservationViewModel
         reservationDatabaseViewModel = ViewModelProvider(this).get(ReservationDatabaseViewModel::class.java)
-        reservationDatabaseViewModel.todaysCheckIn.observe(viewLifecycleOwner, Observer { reservation ->
+        reservationDatabaseViewModel.allCheckOut.observe(viewLifecycleOwner, Observer { reservation ->
             adapter.setData(reservation)
         })
+
+        binding.imageButton.setOnClickListener{
+
+            var searchItem:String = binding.searchGuestsInHouse.text.toString()
+
+            if(searchItem != ""){
+                searchItem = searchItem.toUpperCase()
+
+                reservationDatabaseViewModel.searchReservation("%" + searchItem + "%", "checkOut").observe(viewLifecycleOwner, Observer { reservataion ->
+                    adapter.setData(reservataion)
+                })
+            }else{
+                reservationDatabaseViewModel.allCheckOut.observe(viewLifecycleOwner, Observer { reservation ->
+                    adapter.setData(reservation)
+                })
+            }
+        }
 
         return binding.root
     }
