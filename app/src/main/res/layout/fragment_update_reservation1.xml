@@ -170,22 +170,21 @@
                 android:textSize="15dp"
                 android:gravity="center"
                 android:textAlignment="textStart"
-                android:onClick="pickCheckOutDate"
                 />
 
-            <ImageView
-                android:id="@+id/icon_check_out_date"
-                android:layout_width="17dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintStart_toEndOf="@id/check_out_date"
-                app:layout_constraintTop_toBottomOf="@id/icon_room_type"
-                app:layout_constraintBottom_toBottomOf="@id/check_out_date"
-                app:srcCompat="@drawable/calendar"
-                android:layout_marginStart="5dp"
-                android:onClick="selectCheckOutDate"
+<!--            <ImageView-->
+<!--                android:id="@+id/icon_check_out_date"-->
+<!--                android:layout_width="17dp"-->
+<!--                android:layout_height="52dp"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                app:layout_constraintStart_toEndOf="@id/check_out_date"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/icon_room_type"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/check_out_date"-->
+<!--                app:srcCompat="@drawable/calendar"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:onClick="selectCheckOutDate"-->
 
-                />
+<!--                />-->
 
             <ImageView
                 android:id="@+id/icon_email"

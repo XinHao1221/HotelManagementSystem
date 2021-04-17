@@ -59,7 +59,7 @@ class CheckInMenuFragment : Fragment() {
             if(searchItem != ""){
                 searchItem = searchItem.toUpperCase()
 
-                reservationDatabaseViewModel.searchReservation("%" + searchItem + "%", "pending").observe(viewLifecycleOwner, Observer { reservataion ->
+                reservationDatabaseViewModel.searchTodaysCheckIn("%" + searchItem + "%").observe(viewLifecycleOwner, Observer { reservataion ->
                     adapter.setData(reservataion)
                 })
             }else{

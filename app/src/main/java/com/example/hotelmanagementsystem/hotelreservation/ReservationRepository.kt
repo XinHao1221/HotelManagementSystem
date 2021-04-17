@@ -57,6 +57,18 @@ class ReservationRepository(private val hotelDao: HotelDao) {
         return hotelDao.searchReservation(guestName, status)
     }
 
+    fun searchTodaysCheckIn(guestName: String):LiveData<List<Reservation>>{
+
+        return hotelDao.searchTodaysCheckIn(guestName, getTodaysDate())
+
+    }
+
+    fun searchTodaysCheckOut(guestName: String):LiveData<List<Reservation>>{
+
+        return hotelDao.searchTodaysCheckOut(guestName, getTodaysDate())
+
+    }
+
 
     fun getAll():LiveData<List<Reservation>>{
         return hotelDao.getAllReservation()

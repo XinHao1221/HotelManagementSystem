@@ -52,6 +52,14 @@ class ReservationDatabaseViewModel(application: Application): AndroidViewModel(a
         return repository.searchReservation(guestName, status)
     }
 
+    fun searchTodaysCheckIn(guestName: String):LiveData<List<Reservation>>{
+        return repository.searchTodaysCheckIn(guestName)
+    }
+
+    fun searchTodaysCheckOut(guestName: String):LiveData<List<Reservation>>{
+        return repository.searchTodaysCheckOut(guestName)
+    }
+
 
     fun deleteReservation(reservation: Reservation){
 
