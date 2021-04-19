@@ -69,7 +69,7 @@ class FloorManagement : Fragment(), View.OnClickListener  {
         return super.onOptionsItemSelected(item)
     }
     override fun onClick(v: View?) {
-        var id:Int = mFloorViewModel.getFloorCount()
+        var id:Int = mFloorViewModel.getFloorCount()+1
         var floorID:String?=null
         var floorName:String??=null
         if(id<25) {

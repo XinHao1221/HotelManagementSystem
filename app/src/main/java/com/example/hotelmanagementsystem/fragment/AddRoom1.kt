@@ -96,7 +96,7 @@ class AddRoom1 : Fragment(), View.OnClickListener {
             toastmsg(roomID)
         }
         if(inputCheck(roomName)&&inputCheck(priceWorkday,priceWeekend,priceHoliday)) {
-            roomID?.let { HotelRoom(it,floorID,roomName,roomType,roomDescription,priceWorkday.toDouble(),priceWeekend.toDouble(),priceHoliday.toDouble()) }
+            roomID?.let { HotelRoom(it,floorID,roomType,roomName,roomDescription,priceWorkday.toDouble(),priceWeekend.toDouble(),priceHoliday.toDouble()) }
                 ?.let { mHotelRoomViewModel.addRoom(it) }
             toastmsg(addOk)
             val bundle = bundleOf("floorID" to floorID)
