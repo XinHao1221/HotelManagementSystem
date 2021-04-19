@@ -37,6 +37,11 @@
     <string name="hotel_handbook">Hotel Handbook</string>
     <string name="room_access_card">Room Access Card</string>
 
+    <string name="notes_title">Notes Title</string>
+    <string name="notes_id">Notes ID: </string>
+    <string name="notes_details_edit">Edit notes details here.</string>
+    <string name="notes_save">SAVE</string>
+
     <!-- Spinner item -->
     <string-array name="spinnerItem_IdType">
         <item>MY Card</item>
