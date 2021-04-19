@@ -11,15 +11,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.hotelmanagementsystem.R
 import com.example.hotelmanagementsystem.databinding.FragmentAddReservation1Binding
+import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationDatabaseViewModel
 import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationViewModel
+import com.example.hotelmanagementsystem.test
+import kotlinx.android.synthetic.main.fragment_add_reservation1.*
 
 const val KEY_GUESTNAME = "guest_name"
 
 class AddReservation1Fragment : Fragment() {
 
+    private lateinit var reservationDatabaseViewModel: ReservationDatabaseViewModel
     private val sharedViewModel: ReservationViewModel by activityViewModels()
 
     private var binding: FragmentAddReservation1Binding? = null
@@ -35,6 +43,9 @@ class AddReservation1Fragment : Fragment() {
             R.layout.fragment_add_reservation1,container,false)
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Make Reservation"
+
+        // ReservationViewModel
+        reservationDatabaseViewModel = ViewModelProvider(this).get(ReservationDatabaseViewModel::class.java)
 
         if(savedInstanceState != null){
             binding.name.setText(savedInstanceState.getString(KEY_GUESTNAME), TextView.BufferType.EDITABLE)
@@ -186,8 +197,22 @@ class AddReservation1Fragment : Fragment() {
 
 
         // If user have entered all the required page, navigate to next page
-        if(condition == 1)
+        if(condition == 1){
+
+//            val _score = MutableLiveData<Int>()
+//            val score: LiveData<Int>
+//
+//            reservationDatabaseViewModel.checkAvailability(sharedViewModel.checkInDate.toString(), sharedViewModel.roomType.toString()).observe(viewLifecycleOwner, Observer {
+//                temp -> _score.value = temp
+//
+//                binding.textView.setText(_score.value.toString())
+//
+//            })
+
             findNavController().navigate(R.id.action_addReservation1Fragment_to_displayReservationSummaryFragment)
+        }
+
+
         //Navigation.findNavController(view).navigate(R.id.action_addReservation1Fragment_to_test)
 
 

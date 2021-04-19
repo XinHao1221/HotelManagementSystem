@@ -41,6 +41,11 @@ class ReservationDatabaseViewModel(application: Application): AndroidViewModel(a
         }
     }
 
+    fun checkAvailability(checkInDate: String, roomType: String): LiveData<Int>{
+
+        return repository.checkAvailability(checkInDate, roomType)
+    }
+
     fun updateReservation(reservation: Reservation){
 
         viewModelScope.launch(Dispatchers.IO) {
