@@ -36,4 +36,7 @@ class StaffViewModel(application: Application): AndroidViewModel(application) {
     fun readStaffProfile(staffID:String):Staff{
         return repository.readStaffProfile(staffID)
     }
+    fun updateStaffDetails(staffID:String,staffName:String,identity:String,email:String,phone:String,birthday:String,wage:Double,admin:Boolean,activateAcc:Boolean){
+        return repository.updateStaffDetails(staffID,staffName,identity,email,phone,birthday,wage,admin,activateAcc)
+    }
 }

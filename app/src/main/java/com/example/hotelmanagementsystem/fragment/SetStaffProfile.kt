@@ -1,12 +1,14 @@
 package com.example.myapp.fragment
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.hotelmanagementsystem.R
 import com.example.myapp.database.Staff
 import com.example.myapp.database.StaffViewModel
@@ -21,7 +23,6 @@ class SetStaffProfile : Fragment(),View.OnClickListener {
     private lateinit var editEmail: EditText
     private lateinit var editPhone: EditText
     private lateinit var textBirthday: TextView
-    private lateinit var dateButton: ImageButton
     private lateinit var editWage: EditText
     private lateinit var swhStatusAdmin: Switch
     private lateinit var swhStatusAcc: Switch
@@ -60,10 +61,10 @@ class SetStaffProfile : Fragment(),View.OnClickListener {
         editEmail=view.findViewById(R.id.editEmail)
         editPhone=view.findViewById(R.id.editPhone)
         textBirthday=view.findViewById(R.id.textBrithday)
-        dateButton=view.findViewById(R.id.dateButton)
         editWage=view.findViewById(R.id.editWage)
         swhStatusAdmin=view.findViewById(R.id.swh_status_admin)
         swhStatusAcc=view.findViewById(R.id.swh_status_acc)
+        saveButton=view.findViewById(R.id.saveButton)
         var sProfile: Staff? = null
         if(staffID!=null) {
             sProfile = rStaffViewModel.readStaffProfile(staffID)
@@ -81,15 +82,31 @@ class SetStaffProfile : Fragment(),View.OnClickListener {
         sProfile?.admin?.let { swhStatusAdmin.setChecked(it) }
         sProfile?.activateAcc?.let { swhStatusAcc.setChecked(it) }
 
-        //dateButton
-        //dateButton
-        //saveButton.setOnClickListener(this)
+        saveButton.setOnClickListener(this)
     }
     override fun onClick(v: View?) {
-        val updateOk = "Successfully update room prices"
+        val updateOk = "Successfully update staff profile"
         val staffName = editStaffName.text.toString()
+        val identity = staffSpinner.selectedItem.toString()
         val email = editEmail.text.toString()
         val phoneNo = editPhone.text.toString()
+        val birthday = textBirthday.text.toString()
+        val wage = editWage.text.toString()
+        val admin = swhStatusAdmin.isChecked
+        val acc = swhStatusAcc.isChecked
         val staffID: String? = arguments?.getString("staffID")
+
+        if (staffID != null&& inputCheck(staffName,identity,email,phoneNo,birthday,wage)) {
+            rStaffViewModel.updateStaffDetails(staffID,staffName,identity,email,phoneNo,birthday,wage.toDouble(),admin,acc)
+            toastmsg(updateOk)
+            findNavController().navigate(R.id.action_setStaffProfile_to_staffManagement)
+        }
+    }
+    private fun inputCheck(staffName:String,identity:String,email:String,phone:String,birthday:String,wage:String):Boolean{
+        return !(TextUtils.isEmpty(staffName)||TextUtils.isEmpty(identity)||TextUtils.isEmpty(email)||
+                TextUtils.isEmpty(phone)||TextUtils.isEmpty(birthday)|| TextUtils.isEmpty(wage)||TextUtils.isDigitsOnly(wage))
+    }
+    private fun toastmsg(msg: String){
+        Toast.makeText(requireView().context, msg, Toast.LENGTH_SHORT).show();
     }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/easeHotel">
+    app:startDestination="@id/staffManagement">
 
 
     <fragment
@@ -91,7 +91,11 @@
         android:id="@+id/setStaffProfile"
         android:name="com.example.myapp.fragment.SetStaffProfile"
         android:label="fragment_staff_profile"
-        tools:layout="@layout/fragment_staff_profile" />
+        tools:layout="@layout/fragment_staff_profile" >
+        <action
+            android:id="@+id/action_setStaffProfile_to_staffManagement"
+            app:destination="@id/staffManagement" />
+    </fragment>
     <fragment
         android:id="@+id/addReservation1Fragment"
         android:name="com.example.hotelmanagementsystem.hotelreservation.addreservation.AddReservation1Fragment"

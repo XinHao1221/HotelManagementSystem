@@ -106,6 +106,36 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+    fun selectBirthday(v: View){
+
+        val date = Calendar.getInstance()
+        val year = date.get(Calendar.YEAR)
+        val month = date.get(Calendar.MONTH)
+        val day = date.get(Calendar.DAY_OF_MONTH)
+
+
+        var birthday: TextView = findViewById(R.id.textBrithday)
+
+        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { v, mYear, mMonth, mDay ->
+            birthday.setText("" + ("%02d" .format(mDay)) + "/" + ("%02d" .format(mMonth + 1)) + "/" + mYear)
+
+            // Code to display selected day + 1 into check out date textview
+            selectedDate = ("%02d" .format(mDay)) + "/" + ("%02d" .format(mMonth + 1)) + "/" + mYear
+
+            // Get day, month and year from the selected date
+            selectedDay = selectedDate.substring(0..1)
+            selectedMonth = selectedDate.substring(3..4).toString()
+            selectedYear = selectedDate.substring(6..9).toString()
+
+            // Convert into proper format so that it can be execute by parse
+            selectedDate = selectedYear.toString() + "-" + selectedMonth.toString() + "-" + selectedDay.toString()
+
+        }, year, month, day)
+
+        dpd.show()
+
+
+    }
 
     // function to select check out date
     fun selectCheckOutDate(v: View){

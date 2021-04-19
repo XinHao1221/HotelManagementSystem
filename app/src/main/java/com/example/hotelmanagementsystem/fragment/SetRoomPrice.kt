@@ -93,21 +93,4 @@ class SetRoomPrice : Fragment(),View.OnClickListener {
     private fun toastmsg(msg: String){
         Toast.makeText(requireView().context, msg, Toast.LENGTH_SHORT).show();
     }
-    /*
-    private fun showSingleButtonDialog(title: String, alertText: String, btnText: String, onClickListener:View.OnClickListener) {
-        mDialog = builderForCustom!!.setTitle(title)
-                .setMessage(alertText)
-                .setSingleButton(btnText, onClickListener)
-                .createSingleButtonDialog()
-        mDialog!!.show()
-    }
-
-    private fun showTwoButtonDialog(title: String, alertText: String, confirmText: String, cancelText: String, conFirmListener: View.OnClickListener, cancelListener: View.OnClickListener) {
-        mDialog = builderForCustom!!.setTitle(title)
-                .setMessage(alertText)
-                .setPositiveButton(confirmText, conFirmListener)
-                .setNegativeButton(cancelText, cancelListener)
-                .createTwoButtonDialog()
-        mDialog!!.show()
-    }*/
 }

@@ -23,4 +23,7 @@ interface StaffDao {
 
     @Query("SELECT * FROM Staff WHERE staffID=:staffID ORDER BY staffID ASC")
     fun readStaffProfile(staffID:String):Staff
+
+    @Query("UPDATE Staff SET name =:staffName, identity =:identity,email_address =:email, phoneNumber =:phone, birthday=:birthday,wage=:wage, admin=:admin,activateAcc=:activateAcc WHERE staffID = :staffID")
+    fun updateStaffDetails(staffID:String,staffName:String,identity:String,email:String,phone:String,birthday:String,wage:Double,admin:Boolean,activateAcc:Boolean)
 }

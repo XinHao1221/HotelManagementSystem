@@ -18,4 +18,7 @@ class StaffRepository(private val staffDao: StaffDao) {
     fun readStaffProfile(staffID:String):Staff{
         return staffDao.readStaffProfile(staffID)
     }
+    fun updateStaffDetails(staffID:String,staffName:String,identity:String,email:String,phone:String,birthday:String,wage:Double,admin:Boolean,activateAcc:Boolean){
+        return staffDao.updateStaffDetails(staffID,staffName,identity,email,phone,birthday,wage,admin,activateAcc)
+    }
 }
