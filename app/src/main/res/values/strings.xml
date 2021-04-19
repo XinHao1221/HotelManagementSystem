@@ -62,6 +62,32 @@
         <item>Credit Card</item>
         <item>Cash</item>
     </string-array>
+
+    <!--LWH-->
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo_name">EaseHotel</string>
+    <string name="logo">Logo</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="user_name">User Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="set_password">Set Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="see_floor_details">see floor details</string>
+    <string name="room_name"><u>Room 101</u></string>
+    <string-array name="room_lunch">
+        <item>Single Room</item>
+        <item>Double Room</item>
+        <item>King Size Room</item>
+        <item>Standard Room</item>
+        <item>Triple Room</item>
+        <item>Quad Room</item>
+        <item>Deluxe Room</item>
+    </string-array>
+    <string-array name="staff_lunch">
+        <item>Manager</item>
+        <item>Staff</item>
+    </string-array>
 </resources>

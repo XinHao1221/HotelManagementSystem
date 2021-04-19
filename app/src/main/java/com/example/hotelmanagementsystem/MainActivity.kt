@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewConfiguration
 import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.myapp.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.selects.select
 import java.time.LocalDate
@@ -22,6 +24,10 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var sStaffViewModel: StaffViewModel
+    private lateinit var fStaffViewModel: FloorViewModel
+    private lateinit var rStaffViewModel: HotelRoomViewModel
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -46,6 +52,13 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        //LWH
+        sStaffViewModel = ViewModelProvider(this).get(StaffViewModel::class.java)
+        fStaffViewModel = ViewModelProvider(this).get(FloorViewModel::class.java)
+        rStaffViewModel = ViewModelProvider(this).get(HotelRoomViewModel::class.java)
+        addStaffData()
+        addFloorData()
+        addRoomData()
     }
 
     // Function to select check in date
@@ -116,5 +129,45 @@ class MainActivity : AppCompatActivity() {
 
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    fun addStaffData(){
+        val staff1 = Staff("S1001","manager1","Manager","manager1@gmail.com","01012345678","1-1-2000",50.00,true,true,"123456")
+        val staff2 = Staff("S1002","staff1","Staff","staff1@gmail.com","0101234567","1-2-2000",50.00,false,true,"12345")
+        val staff3 = Staff("S1003","staff2","Staff","staff2@gmail.com","0101234567","1-3-2000",50.00,false,true,"1234")
+        sStaffViewModel.addStaff(staff1)
+        sStaffViewModel.addStaff(staff2)
+        sStaffViewModel.addStaff(staff3)
+    }
+    fun addFloorData(){
+        val floor_1 = Floor("F001","1F")
+        val floor_2 = Floor("F002","2F")
+        val floor_3 = Floor("F003","3F")
+        fStaffViewModel.addFloor(floor_1)
+        fStaffViewModel.addFloor(floor_2)
+        fStaffViewModel.addFloor(floor_3)
+    }
+    fun addRoomData(){
+        val room_1_f1 = HotelRoom("R101","F001","King Size Room","Room 101","description of room 101", 50.00, 60.00, 70.00)
+        val room_2_f1 = HotelRoom("R102","F001","Single Room","Room 102","description of room 102", 50.00, 50.00, 50.00)
+        val room_3_f1 = HotelRoom("R103","F001","Single Room","Room 103","description of room 103", 50.00, 50.00, 50.00)
+        val room_4_f1 = HotelRoom("R104","F001","Single Room","Room 104","description of room 104", 50.00, 50.00, 50.00)
+        val room_5_f1 = HotelRoom("R105","F001","Single Room","Room 105","description of room 105", 50.00, 50.00, 50.00)
+        val room_1_f2 = HotelRoom("R201","F002","Single Room","Room 201","description of room 201", 50.00, 50.00, 50.00)
+        val room_2_f2 = HotelRoom("R202","F002","Single Room","Room 202","description of room 202", 50.00, 50.00, 50.00)
+        val room_3_f2 = HotelRoom("R203","F002","Single Room","Room 203","description of room 203", 50.00, 50.00, 50.00)
+        val room_1_f3 = HotelRoom("R301","F003","Single Room","Room 301","description of room 301", 50.00, 50.00, 50.00)
+        val room_2_f3 = HotelRoom("R302","F003","Single Room","Room 302","description of room 302", 50.00, 50.00, 50.00)
+        rStaffViewModel.addRoom(room_1_f1)
+        rStaffViewModel.addRoom(room_2_f1)
+        rStaffViewModel.addRoom(room_3_f1)
+        rStaffViewModel.addRoom(room_4_f1)
+        rStaffViewModel.addRoom(room_5_f1)
+        rStaffViewModel.addRoom(room_1_f2)
+        rStaffViewModel.addRoom(room_2_f2)
+        rStaffViewModel.addRoom(room_3_f2)
+        rStaffViewModel.addRoom(room_1_f3)
+        rStaffViewModel.addRoom(room_2_f3)
+
     }
 }
