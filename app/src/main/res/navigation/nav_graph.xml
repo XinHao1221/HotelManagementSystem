@@ -159,4 +159,22 @@
             android:name="currentCheckedOut"
             app:argType="com.example.hotelmanagementsystem.database.Reservation" />
     </fragment>
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.example.hotelmanagementsystem.notes.NotesFragment"
+        android:label="fragment_notes"
+        tools:layout="@layout/fragment_notes" >
+        <action
+            android:id="@+id/action_notesFragment_to_notesDetailsFragment"
+            app:destination="@id/notesDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesDetailsFragment"
+        android:name="com.example.hotelmanagementsystem.notes.NotesDetailsFragment"
+        android:label="fragment_notes_details"
+        tools:layout="@layout/fragment_notes_details" >
+        <argument
+            android:name="notes"
+            app:argType="com.example.hotelmanagementsystem.database.NotesDB.NotesEntity" />
+    </fragment>
 </navigation>

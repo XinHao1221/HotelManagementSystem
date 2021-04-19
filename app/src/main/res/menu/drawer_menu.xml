@@ -6,6 +6,8 @@
         <item android:title="Reservation" android:id="@+id/reservationMenuFragment"/>
         <item android:title="Check In" android:id="@+id/checkInMenuFragment"/>
         <item android:title="Check Out" android:id="@+id/checkOutMenuFragment"/>
+        <item android:title="Report" android:id="@+id/reportFragment"/>
+        <item android:title="Notes" android:id="@+id/notesFragment"/>
     </group>
 
 </menu>

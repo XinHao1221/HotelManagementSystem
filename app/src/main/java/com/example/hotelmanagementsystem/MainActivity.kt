@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    // Functiom to select check in date
+    // Function to select check in date
     fun selectCheckInDate(v: View){
 
         val date = Calendar.getInstance()
