@@ -39,6 +39,9 @@ interface  HotelDao{
     @Query("SELECT * FROM reservation_table WHERE check_out_date = :checkOutDate AND status = 'checkIn'")
     fun getTodaysCheckKOut(checkOutDate: String): LiveData<List<Reservation>>
 
+    @Query("SELECT * FROM reservation_table WHERE status = 'checkIn'")
+    fun getAllCheckOut(): LiveData<List<Reservation>>
+
     @Query("SELECT * FROM reservation_table WHERE status = 'checkOut'")
     fun getAllCheckKOut(): LiveData<List<Reservation>>
 
@@ -54,5 +57,7 @@ interface  HotelDao{
     @Query("SELECT * FROM reservation_table WHERE check_out_date = :checkOutDate AND status = 'checkIn' AND UPPER(guest_name) LIKE :guestName")
     fun searchTodaysCheckOut(guestName: String, checkOutDate: String): LiveData<List<Reservation>>
 
+    @Query("SELECT COUNT(*) FROM reservation_table WHERE check_in_date = :checkInDate AND room_type LIKE :roomType AND status IN ('pending', 'checkIn')")
+    fun checkAvailability(checkInDate: String, roomType: String): LiveData<Int>
 
 }

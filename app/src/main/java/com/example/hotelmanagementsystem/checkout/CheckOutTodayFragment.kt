@@ -50,7 +50,7 @@ class CheckOutTodayFragment : Fragment() {
             if(searchItem != ""){
                 searchItem = searchItem.toUpperCase()
 
-                reservationDatabaseViewModel.searchTodaysCheckOut("%" + searchItem + "%").observe(viewLifecycleOwner, Observer { reservataion ->
+                reservationDatabaseViewModel.searchReservation("%" + searchItem + "%", "checkIn").observe(viewLifecycleOwner, Observer { reservataion ->
                     adapter.setData(reservataion)
                 })
             }else{
