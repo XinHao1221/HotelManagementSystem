@@ -1,12 +1,13 @@
 package com.example.hotelmanagementsystem
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.provider.SyncStateContract
 import android.view.View
-import android.view.ViewConfiguration
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -15,11 +16,10 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.selects.select
 import java.time.LocalDate
-import java.time.Year
 import java.time.format.DateTimeFormatter
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,10 +62,10 @@ class MainActivity : AppCompatActivity() {
 
 
         val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { v, mYear, mMonth, mDay ->
-            checkInDate.setText("" + ("%02d" .format(mDay)) + "/" + ("%02d" .format(mMonth + 1)) + "/" + mYear)
+            checkInDate.setText("" + ("%02d".format(mDay)) + "/" + ("%02d".format(mMonth + 1)) + "/" + mYear)
 
             // Code to display selected day + 1 into check out date textview
-            selectedDate = ("%02d" .format(mDay)) + "/" + ("%02d" .format(mMonth + 1)) + "/" + mYear
+            selectedDate = ("%02d".format(mDay)) + "/" + ("%02d".format(mMonth + 1)) + "/" + mYear
 
             // Get day, month and year from the selected date
             selectedDay = selectedDate.substring(0..1)
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
             // Set the next day into check out date textview
             checkOutDate.setText(checkOutDateFormatted.toString())
-                                                                            }, year, month, day)
+        }, year, month, day)
 
         dpd.show()
 
@@ -105,7 +105,8 @@ class MainActivity : AppCompatActivity() {
         var text: TextView = findViewById(R.id.check_out_date)
 
         val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { v, mYear, mMonth, mDay ->
-            text.setText("" + ("%02d" .format(mDay)) + "/" + ("%02d" .format(mMonth + 1)) + "/" + mYear)}, year, month, day)
+            text.setText("" + ("%02d".format(mDay)) + "/" + ("%02d".format(mMonth + 1)) + "/" + mYear)
+        }, year, month, day)
 
         dpd.show()
 
@@ -117,4 +118,85 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+
+
+
+//    class DatabaseAdapter {
+//        private val mDatabaseManager = arrayOfNulls<SQLiteOpenHelper>(2)
+//        private val mDatabases = arrayOfNulls<SQLiteDatabase>(2)
+//
+//        /**
+//         * Checks the database state and throws an [IllegalStateException] if database isn't open.
+//         * Should always be used before starting to access the database.
+//         *
+//         * @param type Type of the database. Can be INTERNAL or EXTERNAL.
+//         */
+//        fun checkDbState(type: Int) {
+//            check(!(mDatabases[type] == null || !mDatabases[type]!!.isOpen)) { "The database has not been opened" }
+//        }
+//
+//        /**
+//         * Closes the database of the given type.
+//         *
+//         * @param type Type of the database. Can be INTERNAL or EXTERNAL.
+//         */
+//        fun close(type: Int) {
+//            if (mDatabases[type]!!.isOpen) {
+//                mDatabases[type]!!.close()
+//                mDatabases[type] = null
+//                if (mDatabaseManager[type] != null) {
+//                    mDatabaseManager[type]!!.close()
+//                    mDatabaseManager[type] = null
+//                }
+//            }
+//        }
+//
+//        /**
+//         * @param type Type of the database. Can be INTERNAL or EXTERNAL.
+//         * @return true if the database is open, false otherwise.
+//         */
+//        fun isOpen(type: Int): Boolean {
+//            return mDatabases[type] != null && mDatabases[type]!!.isOpen
+//        }
+//
+//        /**
+//         * Opens the default database.
+//         *
+//         * @param type Type of the database. Can be INTERNAL or EXTERNAL.
+//         */
+//        fun open(type: Int) {
+//            when (type) {
+//                INTERNAL -> {
+//                    mDatabaseManager[INTERNAL] = hotel_database(MyApplication.getInstance())
+//                    if (!isOpen(INTERNAL)) {
+//                        mDatabases[INTERNAL] = mDatabaseManager[INTERNAL]!!.writableDatabase
+//                    }
+//                }
+//                EXTERNAL -> {
+//                    mDatabaseManager[EXTERNAL] = ExternalDatabaseManager(MyApplication.getInstance(), SyncStateContract.Constants.EXTERNAL_DB_PATH, 1)
+//                    if (!isOpen(EXTERNAL)) {
+//                        mDatabases[EXTERNAL] = mDatabaseManager[EXTERNAL]!!.writableDatabase
+//                    }
+//                }
+//            }
+//        }
+//
+//        companion object {
+//            /** Identifier for the internal database  */
+//            const val INTERNAL = 0
+//
+//            /** Identifier for the external database  */
+//            const val EXTERNAL = 1
+//        }
+//
+//        /**
+//         * Constructs the database and open it.
+//         */
+//        init {
+//            // Open the internal_db
+//            mDatabaseManager[INTERNAL] = InternalDatabaseManager(MyApplication.getInstance())
+//            mDatabases[INTERNAL] = mDatabaseManager[INTERNAL]!!.writableDatabase
+//        }
+//    }
 }
