@@ -3,9 +3,102 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/reservationMenuFragment">
+    app:startDestination="@id/floorManagement">
 
 
+    <fragment
+        android:id="@+id/easeHotel"
+        android:name="com.example.myapp.fragment.EaseHotel"
+        android:label="fragment_ease_hotel"
+        tools:layout="@layout/fragment_ease_hotel">
+        <action
+            android:id="@+id/action_easeHotel_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_easeHotel_to_signUp"
+            app:destination="@id/signUp" />
+    </fragment>
+    <fragment
+        android:id="@+id/setRoomPrice"
+        android:name="com.example.myapp.fragment.SetRoomPrice"
+        android:label="fragment_set_room_price"
+        tools:layout="@layout/fragment_set_room_price">
+        <action
+            android:id="@+id/action_setRoomPrice_to_roomManagement"
+            app:destination="@id/roomManagement" />
+    </fragment>
+    <fragment
+        android:id="@+id/staffManagement"
+        android:name="com.example.myapp.fragment.StaffManagement"
+        android:label="fragment_staff_management"
+        tools:layout="@layout/fragment_staff_management">
+        <action
+            android:id="@+id/action_staffManagement_to_setStaffProfile"
+            app:destination="@id/setStaffProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/floorManagement"
+        android:name="com.example.myapp.fragment.FloorManagement"
+        android:label="fragment_floor_management"
+        tools:layout="@layout/fragment_floor_management">
+        <action
+            android:id="@+id/action_floorManagement_to_roomManagement"
+            app:destination="@id/roomManagement" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.example.myapp.fragment.SignUp"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUp_to_easeHotel"
+            app:destination="@id/easeHotel" />
+    </fragment>
+    <fragment
+        android:id="@+id/setRoomDetails"
+        android:name="com.example.myapp.fragment.SetRoomDetails"
+        android:label="fragment_set_room_detail"
+        tools:layout="@layout/fragment_set_room_detail">
+        <action
+            android:id="@+id/action_setRoomDetails_to_setRoomPrice"
+            app:destination="@id/setRoomPrice" />
+        <action
+            android:id="@+id/action_setRoomDetails_to_roomManagement"
+            app:destination="@id/roomManagement" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.myapp.fragment.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_floorManagement"
+            app:destination="@id/floorManagement" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomManagement"
+        android:name="com.example.myapp.fragment.RoomManagement"
+        android:label="fragment_room_management"
+        tools:layout="@layout/fragment_room_management">
+        <action
+            android:id="@+id/action_roomManagement_to_setRoomDetails"
+            app:destination="@id/setRoomDetails" />
+        <action
+            android:id="@+id/action_roomManagement_to_setRoomPrice"
+            app:destination="@id/setRoomPrice" />
+        <action
+            android:id="@+id/action_roomManagement_to_addRoom1"
+            app:destination="@id/addRoom1" />
+    </fragment>
+    <fragment
+        android:id="@+id/setStaffProfile"
+        android:name="com.example.myapp.fragment.SetStaffProfile"
+        android:label="fragment_staff_profile"
+        tools:layout="@layout/fragment_staff_profile" >
+        <action
+            android:id="@+id/action_setStaffProfile_to_staffManagement"
+            app:destination="@id/staffManagement" />
+    </fragment>
     <fragment
         android:id="@+id/addReservation1Fragment"
         android:name="com.example.hotelmanagementsystem.hotelreservation.addreservation.AddReservation1Fragment"
@@ -176,5 +269,13 @@
         <argument
             android:name="notes"
             app:argType="com.example.hotelmanagementsystem.database.NotesDB.NotesEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRoom1"
+        android:name="com.example.myapp.fragment.AddRoom1"
+        android:label="AddRoom1" >
+        <action
+            android:id="@+id/action_addRoom1_to_floorManagement"
+            app:destination="@id/floorManagement" />
     </fragment>
 </navigation>

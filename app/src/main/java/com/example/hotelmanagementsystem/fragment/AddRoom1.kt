@@ -64,7 +64,6 @@ class AddRoom1 : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //接收传值
-        var roomID: String? = arguments?.getString("RoomID")
         //初始化mHotelRoomViewModel
         mHotelRoomViewModel = ViewModelProvider(this).get(HotelRoomViewModel::class.java)
         //找到控件
@@ -92,6 +91,9 @@ class AddRoom1 : Fragment(), View.OnClickListener {
         var roomID:String?=null
         if(id<100) {
             roomID = "F" + String.format("%03d", id)
+        }
+        if (roomID != null&&inputCheck(priceWorkday,priceWeekend,priceHoliday)) {
+            toastmsg(roomID)
         }
         if(inputCheck(roomName)&&inputCheck(priceWorkday,priceWeekend,priceHoliday)) {
             roomID?.let { HotelRoom(it,floorID,roomName,roomType,roomDescription,priceWorkday.toDouble(),priceWeekend.toDouble(),priceHoliday.toDouble()) }

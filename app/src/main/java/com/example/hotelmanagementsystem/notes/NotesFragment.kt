@@ -49,7 +49,7 @@ class NotesFragment : Fragment() {
         })
 
         binding.addNotesFloatBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_notesFragment_to_notesAddFragment)
+            findNavController().navigate(R.id.action_notesFragment_to_notesDetailsFragment)
         }
 
 
