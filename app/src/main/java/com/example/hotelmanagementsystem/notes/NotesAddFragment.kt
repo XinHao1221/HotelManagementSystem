@@ -14,41 +14,32 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.hotelmanagementsystem.R
+import com.example.hotelmanagementsystem.database.NotesDB.NotesEntity
+import com.example.hotelmanagementsystem.databinding.FragmentNotesAddBinding
 import com.example.hotelmanagementsystem.databinding.FragmentNotesDetailsBinding
-import com.example.hotelmanagementsystem.databinding.FragmentReservationSummaryBinding
-import com.example.hotelmanagementsystem.databinding.FragmentUpdateReservation1Binding
-import com.example.hotelmanagementsystem.hotelreservation.viewmodel.ReservationDatabaseViewModel
 import com.example.hotelmanagementsystem.notes.viewmodel.NotesDatabaseViewModel
 import com.example.hotelmanagementsystem.notes.viewmodel.NotesViewModel
 
-class NotesDetailsFragment : Fragment() {
+class NotesAddFragment : Fragment() {
 
     private val sharedViewModel: NotesViewModel by activityViewModels()
-    private val args by navArgs<NotesDetailsFragmentArgs>()
     private lateinit var notesDatabaseViewModel: NotesDatabaseViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         // Inflate the layout for this fragment
-        val binding = DataBindingUtil.inflate<FragmentNotesDetailsBinding>(inflater,
-                R.layout.fragment_notes_details, container,false)
+        val binding = DataBindingUtil.inflate<FragmentNotesAddBinding>(inflater,
+                R.layout.fragment_notes_add, container,false)
 
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Notes"
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Add Notes"
 
         // Initiate viewmodel
         notesDatabaseViewModel = ViewModelProvider(this).get(NotesDatabaseViewModel::class.java)
 
-        // Display all value in sharedViewModel
-        displayNotesDetails(binding)
-
-        // Set all value inside args into sharedViewModel
-        setValueToTextField(binding)
-
         // Save button
-        binding.notesSaveBtn.setOnClickListener{
+        binding.notesAddSaveBtn.setOnClickListener{
             saveNotesOnclick(it, binding)
         }
 
@@ -56,33 +47,17 @@ class NotesDetailsFragment : Fragment() {
         return binding.root
     }
 
-
-    fun setValueToTextField(binding: FragmentNotesDetailsBinding){
-
-        binding.notesDetailsTitle.setText(sharedViewModel.notesTitle)
-        binding.notesDetailsDesc.setText(sharedViewModel.notesDesc)
-
-    }
-
-    fun displayNotesDetails(binding: FragmentNotesDetailsBinding){
-        binding.notesDetailsID.setText(sharedViewModel.notesID)
-        binding.notesDetailsTitle.setText(sharedViewModel.notesTitle)
-
-        if(sharedViewModel.notesDesc == "")
-            binding.notesDetailsDesc.setText("Edit notes details here.")
-        else
-            binding.notesDetailsDesc.setText(sharedViewModel.notesDesc)
-    }
-
-    private fun saveNotesOnclick(view: View, binding : FragmentNotesDetailsBinding){
+    private fun saveNotesOnclick(view: View, binding : FragmentNotesAddBinding){
 
         // Variable declaration
-        var notesTitle:String = binding.notesDetailsTitle.text.toString()
-        var notesDesc:String = binding.notesDetailsDesc.text.toString()
+        var notesID:String = binding.notesAddID.text.toString()
+        var notesTitle:String = binding.notesAddTitle.text.toString()
+        var notesDesc:String = binding.notesAddDesc.text.toString()
+
 
         if(notesTitle.toString() == ""){
-            DrawableCompat.setTint(binding.notesDetailsTitle.background, Color.RED)
-            binding.notesDetailsDesc.setError("This field is required!")
+            DrawableCompat.setTint(binding.notesAddTitle.background, Color.RED)
+            binding.notesAddDesc.setError("This field is required!")
         }
         else{
 
@@ -93,8 +68,11 @@ class NotesDetailsFragment : Fragment() {
             }
             // Confirm save
             builder.setPositiveButton("Yes"){_, _->
+                sharedViewModel.setNotesID(notesID)
                 sharedViewModel.setNotesTitle(notesTitle)
                 sharedViewModel.setNotesDesc(notesDesc)
+
+                insertDataToDatabase()
             }
 
             builder.setTitle("Save?");
@@ -104,6 +82,21 @@ class NotesDetailsFragment : Fragment() {
         }
 
 
+    }
+
+    private fun insertDataToDatabase(){
+
+        var notesTitle = sharedViewModel.notesTitle.toString()
+        var notesDesc = sharedViewModel.notesTitle.toString()
+
+        // Create Notes object
+        val notes = NotesEntity(0, notesTitle, notesDesc)
+
+        notesDatabaseViewModel.addNotes(notes)
+
+        Toast.makeText(requireContext(), "Notes Saved", Toast.LENGTH_LONG).show()
+
+        findNavController().navigate(R.id.action_notesAddFragment_to_notesFragment)
     }
 
 }
