@@ -18,6 +18,6 @@ data class  NotesEntity(
     val notesTitle: String,
 
     @ColumnInfo(name = "notes_details")
-    val notesDetails: String
+    val idType:String
 
 ): Parcelable

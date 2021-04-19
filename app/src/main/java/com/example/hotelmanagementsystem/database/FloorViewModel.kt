@@ -33,4 +33,17 @@ class FloorViewModel(application: Application): AndroidViewModel(application) {
             repository.addFloor(floor)
         }
     }
+    fun getFloorCount(): Int{
+        return repository.getFloorCount()
+    }
+    fun deleteFloor(floor:Floor){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteFloor(floor)
+        }
+    }
+    fun deleteAllFloor(){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteAllFloor()
+        }
+    }
 }

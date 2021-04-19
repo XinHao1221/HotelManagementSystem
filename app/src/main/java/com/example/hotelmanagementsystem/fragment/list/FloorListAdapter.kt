@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hotelmanagementsystem.R
+import com.example.myapp.database.FloorViewModel
 import com.example.myapp.database.FloorWithRoom
 import com.example.myapp.database.HotelRoom
 import com.example.myapp.database.HotelRoomViewModel
@@ -15,7 +17,6 @@ import kotlinx.android.synthetic.main.floor_list.view.*
 
 
 class FloorListAdapter: RecyclerView.Adapter<FloorListAdapter.MyViewHolder>() {
-    private lateinit var mHotelRoomViewModel: HotelRoomViewModel
     private var floorList = emptyList<FloorWithRoom>()
     class MyViewHolder (itemView: View):RecyclerView.ViewHolder(itemView) {
 
@@ -37,6 +38,7 @@ class FloorListAdapter: RecyclerView.Adapter<FloorListAdapter.MyViewHolder>() {
             }
         }
         holder.itemView.textRoom.text = roomName.toString()
+
         holder.itemView.buttonNext.setOnClickListener{
             val bundle = bundleOf("floorID" to currentItem.floor.floorID)
             Toast.makeText(holder.itemView.context, currentItem.floor.floorID, Toast.LENGTH_SHORT).show()
@@ -55,5 +57,6 @@ class FloorListAdapter: RecyclerView.Adapter<FloorListAdapter.MyViewHolder>() {
         this.floorList = floor
         notifyDataSetChanged()
     }
+
 }
 

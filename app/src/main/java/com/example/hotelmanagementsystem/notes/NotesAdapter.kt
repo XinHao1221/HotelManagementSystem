@@ -7,7 +7,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hotelmanagementsystem.R
 import com.example.hotelmanagementsystem.database.NotesDB.NotesEntity
-import kotlinx.android.synthetic.main.fragment_notes_details.view.*
 import kotlinx.android.synthetic.main.notes_list.view.*
 
 class NotesAdapter(): RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
@@ -37,8 +36,8 @@ class NotesAdapter(): RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
         // Format reservation id before display
         var notesID = formatNotesID(item)
 
-        holder.itemView.notes_list_id.text = notesID
-        holder.itemView.notes_list_title.text = item.notesTitle
+        holder.itemView.notes_id.text = notesID
+        holder.itemView.notes_title.text = item.notesTitle
 
         // Set onclick listener to individual item on recycle view
         holder.itemView.notes_cardView.setOnClickListener{

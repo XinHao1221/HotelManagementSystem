@@ -18,4 +18,13 @@ interface FloorDao {
     @Transaction
     @Query("SELECT * FROM Floor ORDER BY floorID")
     fun getRoomAndFloor(): LiveData<List<FloorWithRoom>>
+
+    @Query("SELECT COUNT(floorID) FROM Floor")
+    fun getFloorCount(): Int
+
+    @Delete
+    suspend fun deleteFloor(floor: Floor)
+
+    @Query("DELETE FROM Floor")
+    suspend fun deleteAllFloor()
 }

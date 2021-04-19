@@ -1,14 +1,18 @@
 package com.example.myapp.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.navArgument
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelmanagementsystem.R
+import com.example.myapp.database.Floor
 import com.example.myapp.database.FloorViewModel
 import com.example.myapp.fragment.list.FloorListAdapter
 import kotlinx.android.synthetic.main.fragment_floor_management.*
@@ -24,15 +28,22 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Fragment1.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FloorManagement : Fragment() {
+class FloorManagement : Fragment(), View.OnClickListener  {
     private lateinit var mFloorViewModel: FloorViewModel
+
+    private lateinit var addButton: View
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_floor_management, container, false)
+        val view = inflater.inflate(R.layout.fragment_floor_management, container, false)
+
+        setHasOptionsMenu(true)
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,8 +55,45 @@ class FloorManagement : Fragment() {
         recyclerView.layoutManager=LinearLayoutManager(requireContext())
         //找到控件
         mFloorViewModel = ViewModelProvider(this).get(FloorViewModel::class.java)
-        mFloorViewModel.getRoomAndFloor.observe(viewLifecycleOwner,  Observer { floor ->
+        mFloorViewModel.getRoomAndFloor.observe(viewLifecycleOwner, Observer { floor ->
             adapter.setData(floor)
         })
+        addButton=view.findViewById(R.id.fab)
+        addButton.setOnClickListener(this)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.menu_delete){
+            deleteAllFloor()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    override fun onClick(v: View?) {
+        var id:Int = mFloorViewModel.getFloorCount()
+        var floorID:String?=null
+        var floorName:String??=null
+        if(id<25) {
+            floorID = "F" + String.format("%03d", id)
+            floorName  = id.toString() + "F"
+        }
+        floorID?.let { Floor(it, floorName) }?.let { mFloorViewModel.addFloor(it) }
+    }
+
+    private fun toastmsg(msg: String){
+        Toast.makeText(requireView().context, msg, Toast.LENGTH_SHORT).show();
+    }
+    private fun deleteAllFloor(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes"){ _, _ ->
+            mFloorViewModel.deleteAllFloor()
+            Toast.makeText(
+                requireContext(),
+                "Successfully removed everything",
+                Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("No"){_,_-> }
+        builder.setTitle("Delete eyeryThing?")
+        builder.setTitle("Are you sure you want to delete everyThing?")
+        builder.create().show()
     }
 }

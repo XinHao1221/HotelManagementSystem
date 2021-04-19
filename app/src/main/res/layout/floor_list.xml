@@ -45,8 +45,8 @@
             android:focusableInTouchMode="true"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"/>
-
+            android:singleLine="true"
+            android:layout_centerVertical="true"/>
         <ImageButton
             android:id="@+id/buttonNext"
             android:layout_width="70dp"
@@ -56,7 +56,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/see_floor_details"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/navigate_next" />
-
+            app:srcCompat="@drawable/navigate_next"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

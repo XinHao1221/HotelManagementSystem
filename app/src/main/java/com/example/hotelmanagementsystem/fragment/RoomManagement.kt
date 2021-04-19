@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelmanagementsystem.R
+import com.example.myapp.database.Floor
 import com.example.myapp.database.HotelRoomViewModel
 import com.example.myapp.fragment.list.RoomListAdapter
 import kotlinx.android.synthetic.main.fragment_floor_management.*
@@ -24,9 +27,9 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Fragment2.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RoomManagement : Fragment() {
+class RoomManagement : Fragment(),View.OnClickListener {
     private lateinit var rRoomViewModel: HotelRoomViewModel
-
+    private lateinit var addButton: View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +53,12 @@ class RoomManagement : Fragment() {
                 adapter.setData(room)
             })
         }
-
+        addButton=view.findViewById(R.id.fab)
+        addButton.setOnClickListener(this)
+    }
+    override fun onClick(v: View?) {
+        var floorID: String? = arguments?.getString("floorID")
+        val bundle = bundleOf("floorID" to floorID)
+        findNavController().navigate(R.id.action_roomManagement_to_addRoom1, bundle)
     }
 }

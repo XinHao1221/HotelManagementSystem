@@ -44,5 +44,7 @@ class HotelRoomViewModel(application: Application): AndroidViewModel(application
     fun updateRoomPrices(roomID:String,priceWorkday:Double,priceWeekend:Double,priceHoliday:Double){
         return repository.updateRoomPrices(roomID, priceWorkday, priceWeekend, priceHoliday)
     }
-
+    fun getRoomCount(): Int{
+        return repository.getRoomCount()
+    }
 }

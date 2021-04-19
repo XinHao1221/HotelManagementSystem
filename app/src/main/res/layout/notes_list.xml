@@ -23,7 +23,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/notes_list_id"
+                android:id="@+id/notes_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -35,7 +35,7 @@
                 android:text="Notes ID: "/>
 
             <TextView
-                android:id="@+id/notes_list_title"
+                android:id="@+id/notes_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -43,7 +43,7 @@
                 android:textColor="@color/black"
                 android:textSize="40dp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/notes_list_id"
+                app:layout_constraintStart_toEndOf="@+id/notes_id"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton

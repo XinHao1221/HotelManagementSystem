@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.myapp.database.HotelRoom
 
 //@Database(entities = [Reservation::class], version = 1, exportSchema = false)
 @Database(entities = [Reservation::class], version = 1, exportSchema = false)

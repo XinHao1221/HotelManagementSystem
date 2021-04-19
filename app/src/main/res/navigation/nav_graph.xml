@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/staffManagement">
+    app:startDestination="@id/floorManagement">
 
 
     <fragment
@@ -86,6 +86,9 @@
         <action
             android:id="@+id/action_roomManagement_to_setRoomPrice"
             app:destination="@id/setRoomPrice" />
+        <action
+            android:id="@+id/action_roomManagement_to_addRoom1"
+            app:destination="@id/addRoom1" />
     </fragment>
     <fragment
         android:id="@+id/setStaffProfile"
@@ -266,5 +269,13 @@
         <argument
             android:name="notes"
             app:argType="com.example.hotelmanagementsystem.database.NotesDB.NotesEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRoom1"
+        android:name="com.example.myapp.fragment.AddRoom1"
+        android:label="AddRoom1" >
+        <action
+            android:id="@+id/action_addRoom1_to_floorManagement"
+            app:destination="@id/floorManagement" />
     </fragment>
 </navigation>

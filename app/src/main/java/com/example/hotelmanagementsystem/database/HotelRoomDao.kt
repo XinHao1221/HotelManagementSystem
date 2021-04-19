@@ -29,4 +29,8 @@ interface HotelRoomDao {
 
     @Query("UPDATE HotelRoom SET price_Workday=:priceWorkday,price_Weekend=:priceWeekend,price_Holiday=:priceHoliday  WHERE roomID = :roomID")
     fun updateRoomPrices(roomID:String,priceWorkday:Double,priceWeekend:Double,priceHoliday:Double)
+
+    @Query("SELECT COUNT(roomID) FROM HotelRoom")
+    fun getRoomCount(): Int
+
 }

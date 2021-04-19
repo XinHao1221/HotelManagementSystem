@@ -31,27 +31,11 @@
             android:layout_marginTop="20dp">
 
             <RadioButton
-                android:id="@+id/room_no1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Room No: R102"
-                android:checked="true"
-                />
-
-            <RadioButton
-                android:id="@+id/room_no2"
+                android:id="@+id/room_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Room No: R203"
                 />
-
-            <RadioButton
-                android:id="@+id/room_no3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Room No: R205"
-                />
-
         </RadioGroup>
 
         <TextView

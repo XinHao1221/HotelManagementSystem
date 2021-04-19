@@ -31,4 +31,9 @@ class HotelRoomRespository(private val hotelRoomDao: HotelRoomDao) {
     fun updateRoomPrices(roomID:String,priceWorkday:Double,priceWeekend:Double,priceHoliday:Double){
         return hotelRoomDao.updateRoomPrices(roomID,priceWorkday,priceWeekend,priceHoliday)
     }
+
+    fun getRoomCount(): Int{
+        return hotelRoomDao.getRoomCount()
+    }
+
 }

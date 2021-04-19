@@ -77,6 +77,7 @@
     <string name="create_new_account">Create New Account</string>
     <string name="see_floor_details">see floor details</string>
     <string name="room_name"><u>Room 101</u></string>
+    <string name="delete">delete</string>
     <string-array name="room_lunch">
         <item>Single Room</item>
         <item>Double Room</item>
