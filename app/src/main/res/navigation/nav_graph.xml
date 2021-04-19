@@ -167,6 +167,9 @@
         <action
             android:id="@+id/action_notesFragment_to_notesDetailsFragment"
             app:destination="@id/notesDetailsFragment" />
+        <action
+            android:id="@+id/action_notesFragment_to_notesAddFragment"
+            app:destination="@id/notesAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/notesDetailsFragment"
@@ -176,5 +179,14 @@
         <argument
             android:name="notes"
             app:argType="com.example.hotelmanagementsystem.database.NotesDB.NotesEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesAddFragment"
+        android:name="com.example.hotelmanagementsystem.notes.NotesAddFragment"
+        android:label="fragment_notes_add"
+        tools:layout="@layout/fragment_notes_add" >
+        <action
+            android:id="@+id/action_notesAddFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
     </fragment>
 </navigation>
