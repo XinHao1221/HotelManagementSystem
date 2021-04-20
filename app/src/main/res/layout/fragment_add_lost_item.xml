@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_add_lost_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".lostfound.AddLostItemFragment">
+
+    <TextView
+        android:id="@+id/add_lost_loc_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/lost_location"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/add_lost_loc"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:labelFor="@id/add_lost_loc_txt"
+        android:maxLength="32"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/add_lost_loc_txt"
+        app:layout_constraintTop_toBottomOf="@+id/add_lost_loc_txt" />
+
+    <TextView
+        android:id="@+id/add_lost_desc_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/description"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/add_lost_loc_txt"
+        app:layout_constraintTop_toBottomOf="@+id/add_lost_loc" />
+
+    <EditText
+        android:id="@+id/add_lost_desc"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:labelFor="@id/add_lost_desc_txt"
+        android:maxLength="64"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/add_lost_loc_txt"
+        app:layout_constraintTop_toBottomOf="@+id/add_lost_desc_txt" />
+
+    <TextView
+        android:id="@+id/add_lost_img_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/image_of_lost_item"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/add_lost_loc_txt"
+        app:layout_constraintTop_toBottomOf="@+id/add_lost_desc" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="105sp"
+        app:layout_constraintStart_toStartOf="@+id/add_lost_img_txt"
+        app:layout_constraintTop_toBottomOf="@+id/add_lost_img_txt">
+
+        <ImageView
+            android:id="@+id/add_lost_item_img"
+            android:layout_width="80sp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/image_of_lost_item"
+            android:src="@drawable/no_image" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/upload_img_button"
+        android:layout_width="150sp"
+        android:layout_height="40sp"
+        android:layout_marginStart="30dp"
+        android:text="@string/choose_image"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout2"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout2" />
+
+    <Button
+        android:id="@+id/remove_img_button"
+        android:layout_width="150sp"
+        android:layout_height="40sp"
+        android:text="@string/remove_image"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout2"
+        app:layout_constraintStart_toStartOf="@+id/upload_img_button"
+        app:layout_constraintTop_toBottomOf="@+id/upload_img_button" />
+
+    <Button
+        android:id="@+id/add_lost_item_button"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50sp"
+        android:backgroundTint="#028C08"
+        android:text="@string/add_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

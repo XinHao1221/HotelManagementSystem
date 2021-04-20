@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="Reservation" android:id="@+id/reservationMenuFragment"/>
+        <item android:title="Check In" android:id="@+id/checkInMenuFragment"/>
+        <item android:title="Check Out" android:id="@+id/checkOutMenuFragment"/>
+        <item android:title="Report" android:id="@+id/reportFragment"/>
+        <item android:title="Notes" android:id="@+id/notesFragment"/>
+        <item android:id="@+id/lostfoundMenuFragment"
+            android:title="Lost &amp; Found" />
+    </group>
+
+</menu>
